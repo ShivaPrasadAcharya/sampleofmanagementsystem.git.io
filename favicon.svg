@@ -4,5 +4,5 @@
   
   <!-- SMS Text -->
   <text x="16" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
-        text-anchor="middle" fill="white">AMS</text>
+        text-anchor="middle" fill="white">SMS</text>
 </svg>
