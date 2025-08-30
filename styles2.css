@@ -1,0 +1,123 @@
+/* styles2.css - Enhanced dropdown styles for ribbon bar-video, html, md */
+
+.videos-ribbon-dropdown, .html-ribbon-dropdown, .md-ribbon-dropdown {
+  display: inline-block;
+  position: relative;
+  margin-left: 8px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.videos-ribbon-btn, .html-ribbon-btn, .md-ribbon-btn {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 24px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(90deg, #f0f2f5 80%, #e0e7ff 100%);
+  color: #222;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.videos-ribbon-btn:hover, .html-ribbon-btn:hover, .md-ribbon-btn:hover {
+  background: linear-gradient(90deg, #e0e7ff 60%, #f0f2f5 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+/* NoteX dropdown button and submenu styles */
+.html-ribbon-btn {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(90deg, #f0f2f5 80%, #e0e7ff 100%);
+  color: #222;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.html-ribbon-btn:hover {
+  background: linear-gradient(90deg, #e0e7ff 60%, #f0f2f5 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.html-ribbon-dropdown > div {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 110%;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  min-width: 180px;
+  z-index: 1001;
+  padding: 4px 0;
+  border: 1px solid #e5e7eb;
+  animation: dropdownFadeIn 0.18s;
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.videos-ribbon-dropdown:hover > div,
+.html-ribbon-dropdown:hover > div,
+.md-ribbon-dropdown:hover > div {
+  display: block;
+}
+
+.videos-ribbon-dropdown:focus-within > div,
+.html-ribbon-dropdown:focus-within > div,
+.md-ribbon-dropdown:focus-within > div {
+  display: block;
+}
+
+.videos-ribbon-dropdown button.files-dropdown-item,
+.html-ribbon-dropdown button.files-dropdown-item,
+.md-ribbon-dropdown button.files-dropdown-item {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 8px 18px;
+  font-size: 1.08em;
+  color: #333;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  min-width: 140px;
+  box-sizing: border-box;
+}
+.videos-ribbon-dropdown button.files-dropdown-item:hover,
+.html-ribbon-dropdown button.files-dropdown-item:hover,
+.md-ribbon-dropdown button.files-dropdown-item:hover {
+  background: #e0e7ff;
+  color: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+  .videos-ribbon-btn, .html-ribbon-btn, .md-ribbon-btn {
+    padding: 8px 10px;
+    font-size: 1em;
+  }
+  .videos-ribbon-dropdown > div,
+  .html-ribbon-dropdown > div,
+  .md-ribbon-dropdown > div {
+    min-width: 110px;
+  }
+  .videos-ribbon-dropdown button.files-dropdown-item,
+  .html-ribbon-dropdown button.files-dropdown-item,
+  .md-ribbon-dropdown button.files-dropdown-item {
+    font-size: 1em;
+    padding: 7px 10px;
+    min-width: 90px;
+  }
+}
