@@ -16,13 +16,36 @@
 
     function simpleMarkdownToHtml(md) {
         if (!md) return '';
-        return md
+        // Extract h1s for TOC
+        var h1s = [];
+        var lines = md.split('\n');
+        var newLines = [];
+        var h1Count = 0;
+        lines.forEach(function(line) {
+            var m = line.match(/^# (.*)$/);
+            if (m) {
+                h1Count++;
+                var id = 'toc-h1-' + h1Count;
+                h1s.push({text: m[1], id: id});
+                newLines.push('<h1 id="' + id + '">' + m[1] + ' <a href="#toc-top" class="toc-back-link">Back to TOC</a></h1>');
+            } else {
+                newLines.push(line);
+            }
+        });
+        var toc = '';
+        if (h1s.length > 0) {
+            toc = '<div id="toc-top" class="toc-container"><strong>Table of Contents</strong><ul>' +
+                h1s.map(function(h) { return '<li><a href="#' + h.id + '" class="toc-link">' + h.text + '</a></li>'; }).join('') +
+                '</ul></div>';
+        }
+        var html = newLines.join('\n')
             .replace(/^### (.*$)/gim, '<h3>$1</h3>')
             .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-            .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+            // h1 already handled
             .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
             .replace(/\n---\n/g, '<hr>')
             .replace(/\n/g, '<br>');
+        return toc + html;
     }
 
     function getAllHtmlFiles() {
@@ -77,7 +100,7 @@
         searchBox.style.alignItems = 'center';
         searchBox.style.gap = '8px';
         searchBox.style.marginBottom = '12px';
-        searchBox.innerHTML = '<input type="text" placeholder="Search in all HTML and markdown..." class="md-search-input" style="width:40%;min-width:120px;max-width:100%;padding:8px 12px;border-radius:6px;border:1px solid #ccc;font-size:15px;">' +
+        searchBox.innerHTML = '<input type="text" placeholder="Search within this page..." class="md-search-input" style="width:40%;min-width:120px;max-width:100%;padding:8px 12px;border-radius:6px;border:1px solid #ccc;font-size:15px;">' +
             '<button class="md-search-prev" style="padding:6px 10px;">&#8593;</button>' +
             '<button class="md-search-next" style="padding:6px 10px;">&#8595;</button>' +
             '<span class="md-search-count" style="min-width:120px;text-align:center;font-size:14px;color:#555;"></span>';
@@ -86,8 +109,9 @@
         var prevBtn = searchBox.querySelector('.md-search-prev');
         var nextBtn = searchBox.querySelector('.md-search-next');
         var countSpan = searchBox.querySelector('.md-search-count');
-        var htmlContent = container.querySelector('.html-content');
+        var htmlContent = container.querySelector('.html-content') || container.querySelector('.markdown-content');
         var files = getAllHtmlFiles();
+        var currentFileIdx = files.findIndex(f => f.key === currentHtmlKey);
         var allMatches = [];
         var currentGlobalIdx = 0;
 
@@ -95,16 +119,15 @@
             var q = input.value.trim();
             allMatches = [];
             var counts = [];
-            files.forEach(function(f, i) {
-                var html = f.type === 'markdown' ? simpleMarkdownToHtml(f.content) : f.content;
-                var {html: highlighted, count} = highlightMatches(html, q);
-                counts.push(count);
-                f.html = highlighted;
-                for (var j = 0; j < count; ++j) {
-                    allMatches.push({fileIdx: i, matchIdx: j});
-                }
-            });
-            var showFileIdx = 0;
+            // Only search in the current file
+            var file = files[currentFileIdx];
+            var html = file.type === 'markdown' ? simpleMarkdownToHtml(file.content) : file.content;
+            var {html: highlighted, count} = highlightMatches(html, q);
+            counts.push(count);
+            file.html = highlighted;
+            for (var j = 0; j < count; ++j) {
+                allMatches.push({fileIdx: currentFileIdx, matchIdx: j});
+            }
             if (allMatches.length > 0) {
                 if (jumpToIdx !== undefined) {
                     currentGlobalIdx = jumpToIdx;
@@ -113,32 +136,26 @@
                 } else if (currentGlobalIdx < 0) {
                     currentGlobalIdx = allMatches.length - 1;
                 }
-                showFileIdx = allMatches[currentGlobalIdx]?.fileIdx || 0;
             } else {
                 currentGlobalIdx = 0;
             }
-            var file = files[showFileIdx];
-            if (file) {
-                if (file.type === 'markdown') {
-                    htmlContent.className = 'markdown-content';
-                    htmlContent.innerHTML = simpleMarkdownToHtml(file.content);
-                } else {
-                    htmlContent.className = 'html-content';
-                    htmlContent.innerHTML = file.html;
-                }
+            if (file.type === 'markdown') {
+                htmlContent.className = 'markdown-content';
+                htmlContent.innerHTML = file.html;
             } else {
-                htmlContent.innerHTML = '';
+                htmlContent.className = 'html-content';
+                htmlContent.innerHTML = file.html;
             }
             var highlights = htmlContent.querySelectorAll('.md-search-highlight');
             var localIdx = 0;
-            if (allMatches.length > 0 && allMatches[currentGlobalIdx].fileIdx === showFileIdx) {
+            if (allMatches.length > 0) {
                 localIdx = allMatches[currentGlobalIdx].matchIdx;
                 if (highlights[localIdx]) {
                     highlights[localIdx].classList.add('md-search-current');
                     highlights[localIdx].scrollIntoView({block:'center',behavior:'smooth'});
                 }
             }
-            var countText = counts.map((c, i) => c > 0 ? c + ' in ' + files[i].label : '').filter(Boolean).join(', ');
+            var countText = count > 0 ? count + ' in ' + file.label : '';
             if (allMatches.length > 0) {
                 countSpan.textContent = (currentGlobalIdx+1) + ' / ' + allMatches.length + (countText ? ' ('+countText+')' : '');
             } else {
@@ -222,7 +239,22 @@
         if (type === 'markdown') {
             htmlContent.innerHTML = simpleMarkdownToHtml(content);
         } else {
-            htmlContent.innerHTML = content;
+            // For HTML, add TOC for h1s
+            var div = document.createElement('div');
+            div.innerHTML = content;
+            var h1s = div.querySelectorAll('h1');
+            var toc = '';
+            if (h1s.length > 0) {
+                toc = '<div id="toc-top" class="toc-container"><strong>Table of Contents</strong><ul>' +
+                    Array.from(h1s).map(function(h, i) {
+                        var id = 'toc-h1-' + (i+1);
+                        h.setAttribute('id', id);
+                        h.innerHTML += ' <a href="#toc-top" class="toc-back-link">Back to TOC</a>';
+                        return '<li><a href="#' + id + '" class="toc-link">' + h.textContent.replace(' Back to TOC','') + '</a></li>';
+                    }).join('') +
+                    '</ul></div>';
+            }
+            htmlContent.innerHTML = toc + div.innerHTML;
         }
         addHtmlSearch(container, htmlKey);
     }
