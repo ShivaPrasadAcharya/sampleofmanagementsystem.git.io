@@ -65,13 +65,13 @@
 .videos-ribbon-dropdown:hover > div,
 .html-ribbon-dropdown:hover > div,
 .md-ribbon-dropdown:hover > div {
-  display: block;
+  display: block !important;
 }
 
 .videos-ribbon-dropdown:focus-within > div,
 .html-ribbon-dropdown:focus-within > div,
 .md-ribbon-dropdown:focus-within > div {
-  display: block;
+  display: block !important;
 }
 
 .videos-ribbon-dropdown button.files-dropdown-item,
@@ -103,6 +103,50 @@
   color: #1d4ed8;
 }
 
+/* TOC styles for NoteX/NoteY */
+.toc-container {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 14px 18px 10px 18px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.07);
+  border-left: 4px solid #667eea;
+}
+.toc-container strong {
+  color: #667eea;
+  font-size: 1.1em;
+}
+.toc-container ul {
+  list-style: disc inside;
+  margin: 8px 0 0 0;
+  padding: 0 0 0 10px;
+}
+.toc-container li {
+  margin-bottom: 4px;
+}
+.toc-link {
+  color: #3a7bd5;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.toc-link:hover {
+  color: #e67e22;
+}
+.toc-back-link {
+  font-size: 0.85em;
+  color: #e67e22;
+  margin-left: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.toc-back-link:hover {
+  color: #3a7bd5;
+}
+
 @media (max-width: 600px) {
   .videos-ribbon-btn, .html-ribbon-btn, .md-ribbon-btn {
     padding: 8px 10px;
@@ -119,5 +163,9 @@
     font-size: 1em;
     padding: 7px 10px;
     min-width: 90px;
+  }
+  .toc-container {
+    padding: 8px 6px 6px 10px;
+    font-size: 0.98em;
   }
 }
