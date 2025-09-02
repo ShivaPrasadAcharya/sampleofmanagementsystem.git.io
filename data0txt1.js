@@ -12,6 +12,6 @@ It contains basic information about civil law and contract principles.
 End of sample 1.
 `;
 window.txt1Meta = {
-  name: "Civil Law TXT 1",
+  name: "Civil Law TXT 12",
   emoji: "📃"
 };
