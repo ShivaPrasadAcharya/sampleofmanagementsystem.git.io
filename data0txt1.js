@@ -1,5 +1,9 @@
 // data0txt1.js
 window.txt1Content = `
+TABLE OF CONTENTS -
+Civil Law - Plain Text Sample 1
+Civil Law - Plain Text Sample 2
+
 Civil Law - Plain Text Sample 1
 
 This is a sample plain text file for NoteZ dropdown.
