@@ -5,8 +5,8 @@ var data5Url2 = `sno,subject,description,shorturl,longurl
 
 // Dataset metadata
 var data5Url2Info = {
-    name: "Just for U",
-    description: "Important Urls-non git links, color columns",
+    name: "Table with double links",
+    description: "Data elements with short and long url",
     emoji: "🔗",
     columns: 5,
     primaryKey: "subject",
