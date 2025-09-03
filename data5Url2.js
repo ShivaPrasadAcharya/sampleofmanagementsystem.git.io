@@ -5,7 +5,7 @@ var data5Url2 = `sno,subject,description,shorturl,longurl
 
 // Dataset metadata
 var data5Url2Info = {
-    name: "Table with double links",
+    name: "Table-double links",
     description: "Data elements with short and long url",
     emoji: "🔗",
     columns: 5,

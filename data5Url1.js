@@ -21,7 +21,7 @@ var data5Url1 = `SN,subject,description,shorturl,longurl
 
 // Dataset metadata
 var data5Url1Info = {
-    name: "Not4U",
+    name: "Table-Not4U",
     description: "URL mapping git-links",
     emoji: "🔗",
     columns: 5,

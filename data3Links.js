@@ -4,7 +4,7 @@ var data3Links = `ID,Categry,Subject,Remark,Link
 `;
 // Dataset metadata
 var data3LinksInfo = {
-    name: "Single Link Notes",
+    name: "Table-Single Link",
     description: "single link",
     emoji: "🔗",
     columns: 5,

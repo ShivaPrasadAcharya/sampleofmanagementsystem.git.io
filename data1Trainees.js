@@ -4,7 +4,7 @@ var data1Trainees = `SN,Name,Permanent Address,Temporary Address,Email,Phone No.
 `;
 // Dataset metadata
 var data1TraineesInfo = {
-    name: "Students",
+    name: "Table1-Linkless",
     description: "data without links and hyperlinks",
     emoji: "👥",
     columns: 6,
