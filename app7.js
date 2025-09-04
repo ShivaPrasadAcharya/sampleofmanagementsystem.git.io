@@ -8,8 +8,35 @@
         var lines = md.split('\n');
         var newLines = [];
         var h1Count = 0;
-        lines.forEach(function(line) {
+        var inTable = false;
+        var tableRows = [];
+        lines.forEach(function(line, idx) {
             var m = line.match(/^# (.*)$/);
+            // Table detection: line with | and at least one more |, and not code block
+            var isTableRow = /^\s*\|(.+\|)+\s*$/.test(line);
+            var isTableHeaderSep = /^\s*\|?(\s*:?-+:?\s*\|)+\s*$/.test(line);
+            if (isTableRow && !isTableHeaderSep) {
+                if (!inTable) {
+                    inTable = true;
+                    tableRows = [];
+                }
+                tableRows.push(line);
+                // If it's the last line, flush table
+                if (idx === lines.length - 1) {
+                    newLines.push(renderTable(tableRows));
+                    inTable = false;
+                    tableRows = [];
+                }
+                return;
+            } else if (isTableHeaderSep && inTable) {
+                tableRows.push(line);
+                return;
+            } else if (inTable) {
+                // End of table, flush
+                newLines.push(renderTable(tableRows));
+                inTable = false;
+                tableRows = [];
+            }
             if (m) {
                 h1Count++;
                 var id = 'toc-h1-' + h1Count;
@@ -33,6 +60,38 @@
             .replace(/\n---\n/g, '<hr>')
             .replace(/\n/g, '<br>');
         return toc + html;
+
+        // Helper: render markdown table to HTML
+        function renderTable(rows) {
+            if (!rows || rows.length < 2) return rows.join('<br>');
+            var header = rows[0].trim().replace(/^\||\|$/g, '').split('|').map(s => s.trim());
+            var align = [];
+            var sep = rows[1].trim().replace(/^\||\|$/g, '').split('|');
+            align = sep.map(function(cell) {
+                cell = cell.trim();
+                if (/^:-+:$/.test(cell)) return 'center';
+                if (/^-+:$/.test(cell)) return 'right';
+                if (/^:-+$/.test(cell)) return 'left';
+                return '';
+            });
+            var bodyRows = rows.slice(2).map(function(row) {
+                return row.trim().replace(/^\||\|$/g, '').split('|').map(s => s.trim());
+            });
+            var html = '<table class="md-table"><thead><tr>' +
+                header.map(function(cell, i) {
+                    var a = align[i] ? ' style="text-align:' + align[i] + ';"' : '';
+                    return '<th' + a + '>' + cell + '</th>';
+                }).join('') +
+                '</tr></thead><tbody>' +
+                bodyRows.map(function(cols) {
+                    return '<tr>' + cols.map(function(cell, i) {
+                        var a = align[i] ? ' style="text-align:' + align[i] + ';"' : '';
+                        return '<td' + a + '>' + cell + '</td>';
+                    }).join('') + '</tr>';
+                }).join('') +
+                '</tbody></table>';
+            return html;
+        }
     }
 
     function getAllMarkdownFiles() {
