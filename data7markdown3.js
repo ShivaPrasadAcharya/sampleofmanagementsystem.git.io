@@ -1,11 +1,19 @@
 // data7markdown3.js
 window.markdown3Content = `
+see this content in Nepali
 
-no content yet
+\`\`\`
+🏠 घरमै बसेर:
+- e-Filing portal मा login
+- Digital documents upload
+- Online court fee payment  
+- Case number instantly generated
+\`\`\`
 
+lets see this content in Nepali
 `;
 window.markdown3Meta = { 
-  name: "No content yet",
-   emoji: "📄"
-   };
+  name: "See trial content",
+  emoji: "📄"
+};
 
