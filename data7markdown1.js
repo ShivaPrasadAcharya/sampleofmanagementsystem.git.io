@@ -5,9 +5,23 @@ window.markdown1Content = `
 
 ## add content in md format 
 
+---
+
+## **KSI Hash vs Bitcoin Hash** ⚖️
+
+| Feature | Bitcoin Hash | KSI Hash |
+|---------|-------------|----------|
+| **Purpose** | Mining rewards | Document integrity |
+| **Energy** | High consumption | Energy efficient |
+| **Speed** | ~10 minutes | Seconds |
+| **Use Case** | Cryptocurrency | Government records |
+| **Scalability** | Limited | Highly scalable |
+
+---
+
 
 `;
 window.markdown1Meta = { 
-  name: "No content yet",
+  name: "table content trial",
    emoji: "📄"
    };
