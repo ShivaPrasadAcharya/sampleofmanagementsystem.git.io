@@ -3,11 +3,14 @@ var data5Url1 = `SN,subject,description,shorturl,longurl
 2,git-Images,Images,data2Images.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data2Images.js
 3,git-Table1,Students,data1Trainees.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data1Trainees.js
 4,git-Table2,Assignments,data4Status.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data4Status.js
+4a,git-Table,LINK-Not4U,data5Url1.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data5Url1.js
+4b,git-Table ,Double LINK-Table,data5Url2.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data5Url2.js
 5,git-Table3,Notes,data3Links.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data3Links.js
 6,git-Link,Upload,to Upload files,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/upload/main
 7,git-LockedImages,Locked images,data6IMAGESS.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data6IMAGESS.js
 8,git-NoteY1,Main Content 1-md,Markdown1,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data7markdown1.js
 9,git-NoteY2,Main Content 2-md,Markdown2,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data7markdown2.js
+9a,git-NoteY3,Main Content 3-md,Markdown3,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data7markdown3.js
 10,git-NoteX1,Main Content 1-html,HTML1,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data8html1.js
 11,git-NoteX2,Main Content 2-html,HTML2,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data8html2.js
 12,git-NoteZ1,Main Content 1-html,TXT1,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data0txt1.js
@@ -31,4 +34,5 @@ var data5Url1Info = {
         "git-Link1": "blue"
     }
 };
+
 
