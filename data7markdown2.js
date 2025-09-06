@@ -1,7 +1,6 @@
 // data7markdown2.js
 window.markdown2Content = `
 ---
-<u>does markdown support underline?-trial</u>
 #### this is fourth level heading-trial
 ## **KSI Hash vs Bitcoin Hash** ⚖️
 
@@ -14,7 +13,8 @@ window.markdown2Content = `
 | **Scalability** | Limited | Highly scalable |
 
 ---
-
+<u>does markdown support underline?-trial</u>
+there is underline text above this line
 `;
 window.markdown2Meta = { 
   name: "table content",
