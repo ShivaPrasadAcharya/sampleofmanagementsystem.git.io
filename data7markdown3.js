@@ -5,72 +5,13 @@ window.markdown3Content = `
             <p class="subtitle">Examination Plan and Curricula for the Written Examination for the Post of District Judge</p>
             <div class="section">
             <h2>Examination Plan</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Paper</th>
-                        <th>Subject</th>
-                        <th>Full Marks</th>
-                        <th>Pass Marks</th>
-                        <th>Exam System</th>
-                        <th>Number of Questions & Marks</th>
-                        <th>Time</th>
-                        <th>Remarks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>First</td>
-                        <td>Jurisprudence, Constitutional Law and Legal System</td>
-                        <td>100</td>
-                        <td>50</td>
-                        <td>Subjective (Critical Analysis and Analytical)</td>
-                        <td>1×25 + 5×15</td>
-                        <td>3 Hours</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Second</td>
-                        <td>Civil Law and Civil Procedural Law</td>
-                        <td>100</td>
-                        <td>50</td>
-                        <td>Subjective (Critical Analysis and Analytical)</td>
-                        <td>1×25 + 5×15</td>
-                        <td>3 Hours</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Third</td>
-                        <td>Criminal Law and Criminal Procedural Law</td>
-                        <td>100</td>
-                        <td>50</td>
-                        <td>Subjective (Critical Analysis and Analytical)</td>
-                        <td>1×25 + 5×15</td>
-                        <td>3 Hours</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Fourth</td>
-                        <td>Study of case file and Problem Solving</td>
-                        <td>100</td>
-                        <td>50</td>
-                        <td>Subjective (Critical Analysis and Analytical)</td>
-                        <td>1×60</td>
-                        <td>1 Hour 45 Minutes</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Fourth</td>
-                        <td>Order Writing</td>
-                        <td>40</td>
-                        <td></td>
-                        <td>Subjective (Critical Analysis and Analytical)</td>
-                        <td>1×20</td>
-                        <td>40 Minutes</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+            | Paper | Subject | Full Marks | Pass Marks | Exam System | Number of Questions & Marks | Time | Remarks |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| First | Jurisprudence, Constitutional Law and Legal System | 100 | 50  | Subjective (Critical Analysis and Analytical) | 1×25 + 5×15 | 3 Hours |     |
+| Second | Civil Law and Civil Procedural Law | 100 | 50  | Subjective (Critical Analysis and Analytical) | 1×25 + 5×15 | 3 Hours |     |
+| Third | Criminal Law and Criminal Procedural Law | 100 | 50  | Subjective (Critical Analysis and Analytical) | 1×25 + 5×15 | 3 Hours |     |
+| Fourth | Study of case file and Problem Solving | 100 | 50  | Subjective (Critical Analysis and Analytical) | 1×60 | 1 Hour 45 Minutes |     |
+| Fourth | Order Writing | 40  |     | Subjective (Critical Analysis and Analytical) | 1×20 | 40 Minutes |     |
             <p><strong>Grand Total: 450 Marks</strong></p>
         </div>
 
@@ -498,5 +439,6 @@ window.markdown3Meta = {
   name: "See trial content",
   emoji: "📄"
 };
+
 
 
