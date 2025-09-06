@@ -1,14 +1,9 @@
 // data7markdown3.js
 window.markdown3Content = `
     <title>District Judge Examination Plan and Curriculum</title>
-    <body>
-    <div class="container">
-        <header>
-            <h1>District Judge Examination Plan and Curriculum</h1>
+                   <h1>District Judge Examination Plan and Curriculum</h1>
             <p class="subtitle">Examination Plan and Curricula for the Written Examination for the Post of District Judge</p>
-        </header>
-
-        <div class="section">
+            <div class="section">
             <h2>Examination Plan</h2>
             <table>
                 <thead>
@@ -496,11 +491,12 @@ window.markdown3Content = `
             <p>District Judge Examination Plan and Curriculum</p>
             <p>© 2023 Judicial Service Commission</p>
         </footer>
-    </div>
-</body>
+
+
 `;
 window.markdown3Meta = { 
   name: "See trial content",
   emoji: "📄"
 };
+
 
