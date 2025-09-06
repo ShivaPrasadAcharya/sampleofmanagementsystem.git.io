@@ -1,6 +1,7 @@
 // data7markdown2.js
 window.markdown2Content = `
 ---
+<u>does markdown support underline?-trial</u>
 #### this is fourth level heading-trial
 ## **KSI Hash vs Bitcoin Hash** ⚖️
 
