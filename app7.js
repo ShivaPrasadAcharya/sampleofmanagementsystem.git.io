@@ -58,6 +58,7 @@
             .replace(/^## (.*$)/gim, '<h2>$1</h2>')
             // h1 already handled
             .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+            .replace(/\*\*(.*?)\*\*/gim, '<em>$1</em>')
             .replace(/\n---\n/g, '<hr>')
             .replace(/\n/g, '<br>');
         return toc + html;
