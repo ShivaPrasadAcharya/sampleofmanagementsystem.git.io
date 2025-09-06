@@ -53,6 +53,7 @@
                 '</ul></div>';
         }
         var html = newLines.join('\n')
+            .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
             .replace(/^### (.*$)/gim, '<h3>$1</h3>')
             .replace(/^## (.*$)/gim, '<h2>$1</h2>')
             // h1 already handled
