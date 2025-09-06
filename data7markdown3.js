@@ -1,10 +1,5 @@
 // data7markdown3.js
 window.markdown3Content = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>District Judge Examination Plan and Curriculum</title>
     <style>
         * {
@@ -170,7 +165,6 @@ window.markdown3Content = `
             }
         }
     </style>
-</head>
 <body>
     <div class="container">
         <header>
@@ -668,7 +662,7 @@ window.markdown3Content = `
         </footer>
     </div>
 </body>
-</html>`;
+`;
 window.markdown3Meta = { 
   name: "See trial content",
   emoji: "📄"
