@@ -14,7 +14,7 @@ window.markdown2Content = `
 
 ---
 <u>does markdown support underline?-trial</u>
-** there is underline text above this line**
+**there is underline text above this line**
 `;
 window.markdown2Meta = { 
   name: "table content",
