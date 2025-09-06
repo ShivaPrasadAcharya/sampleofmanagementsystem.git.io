@@ -311,7 +311,7 @@ window.markdown3Content = `
                 <ol>
                     <li><strong>Judgment Writing (60 marks)</strong>
                         <p>Any One Judgment Writing on Criminal or Civil Cases on the Basis of Provided Facts Mentioning Appropriate Precedents</p>
-                        <table>
+<table>
                             <thead>
                                 <tr>
                                     <th>S.N.</th>
@@ -439,6 +439,7 @@ window.markdown3Meta = {
   name: "See trial content",
   emoji: "📄"
 };
+
 
 
 
