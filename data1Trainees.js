@@ -8,6 +8,7 @@ var data1TraineesInfo = {
     description: "data without links and hyperlinks",
     emoji: "👥",
     columns: 6,
+    display:"hide",
     primaryKey: "SN",
     rowColors: {
         "01": "green",
