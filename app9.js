@@ -33,12 +33,45 @@
             var embedUrl = video.longurl.replace('/shorts/', '/embed/').replace('watch?v=', 'embed/');
             iframe.src = embedUrl;
             container.appendChild(iframe);
-        } else if (video.longurl && video.longurl.match(/\.mp4$/)) {
+        } else if (video.longurl && video.longurl.match(/\.(mp4|MP4)$/)) {
+            // MP4 video: show player and download/open link
             var videoEl = document.createElement('video');
             videoEl.controls = true;
             videoEl.width = 360;
             videoEl.src = video.longurl;
+            videoEl.style.marginBottom = '8px';
             container.appendChild(videoEl);
+            var openBtn = document.createElement('a');
+            openBtn.href = video.longurl;
+            openBtn.download = '';
+            openBtn.target = '_blank';
+            openBtn.textContent = 'Download/Open with Media Player';
+            openBtn.className = 'media-open-btn';
+            openBtn.style.marginTop = '4px';
+            openBtn.style.display = 'inline-block';
+            openBtn.style.color = '#1d4ed8';
+            openBtn.style.textDecoration = 'underline';
+            openBtn.style.fontSize = '0.98em';
+            container.appendChild(openBtn);
+        } else if (video.longurl && video.longurl.match(/\.(mp3|MP3)$/)) {
+            // MP3 audio: show player and download/open link
+            var audioEl = document.createElement('audio');
+            audioEl.controls = true;
+            audioEl.src = video.longurl;
+            audioEl.style.marginBottom = '8px';
+            container.appendChild(audioEl);
+            var openBtn = document.createElement('a');
+            openBtn.href = video.longurl;
+            openBtn.download = '';
+            openBtn.target = '_blank';
+            openBtn.textContent = 'Download/Open with Audio Player';
+            openBtn.className = 'media-open-btn';
+            openBtn.style.marginTop = '4px';
+            openBtn.style.display = 'inline-block';
+            openBtn.style.color = '#1d4ed8';
+            openBtn.style.textDecoration = 'underline';
+            openBtn.style.fontSize = '0.98em';
+            container.appendChild(openBtn);
         } else if (video.shorturl) {
             var a = document.createElement('a');
             a.href = video.shorturl;
@@ -117,3 +150,4 @@
     style.textContent = '.video-card-grid { display: flex; flex-wrap: wrap; gap: 24px; margin: 32px 0; } .video-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 16px; width: 380px; display: flex; flex-direction: column; align-items: flex-start; transition: box-shadow 0.2s; } .video-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.16); } .video-title { font-weight: bold; font-size: 1.1em; margin-bottom: 6px; } .video-desc { color: #555; font-size: 0.97em; margin-bottom: 8px; }';
     document.head.appendChild(style);
 })();
+
