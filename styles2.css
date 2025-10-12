@@ -25,6 +25,7 @@
 }
 
 /* NoteX dropdown button and submenu styles */
+
 .html-ribbon-btn {
   font-weight: bold;
   cursor: pointer;
@@ -300,4 +301,141 @@
 .md-search-current {
   background: #00796b !important;
   color: #fff !important;
+}
+
+/* NoteU dropdown styles */
+.noteu-dropdown {
+  display: inline-block;
+  position: relative;
+  margin-left: 8px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  transition: box-shadow 0.2s;
+}
+.noteu-btn {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 24px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(90deg, #e0e7ff 80%, #f0f2f5 100%);
+  color: #222;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  outline: none;
+}
+.noteu-btn:focus, .noteu-btn:hover {
+  background: linear-gradient(90deg, #f0f2f5 60%, #e0e7ff 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  transform: translateY(-2px) scale(1.03);
+}
+.noteu-dropdown > div {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 110%;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  min-width: 160px;
+  z-index: 1001;
+  padding: 8px 0;
+  border: 1px solid #e5e7eb;
+  animation: dropdownFadeIn 0.18s;
+}
+.noteu-dropdown:hover > div,
+.noteu-dropdown:focus-within > div {
+  display: block !important;
+}
+.noteu-dropdown button.noteu-dropdown-item {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 22px;
+  font-size: 1.08em;
+  color: #333;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s, transform 0.1s;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  min-width: 140px;
+  box-sizing: border-box;
+  outline: none;
+}
+.noteu-dropdown button.noteu-dropdown-item:focus, .noteu-dropdown button.noteu-dropdown-item:hover {
+  background: #e0e7ff;
+  color: #1d4ed8;
+  transform: scale(1.03);
+}
+
+/* NoteU1 and NoteU2 nested dropdown styles */
+.noteu1-dropdown, .noteu2-dropdown {
+  display: block;
+  position: relative;
+  margin-bottom: 4px;
+}
+.noteu1-btn, .noteu2-btn {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 18px;
+  border-radius: 18px;
+  border: none;
+  background: #e0e7ff;
+  margin-bottom: 2px;
+  font-size: 1em;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  outline: none;
+}
+.noteu1-btn:focus, .noteu1-btn:hover,
+.noteu2-btn:focus, .noteu2-btn:hover {
+  background: #f0f2f5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transform: scale(1.03);
+}
+.noteu1-dropdown > div, .noteu2-dropdown > div {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  min-width: 140px;
+  z-index: 1002;
+  padding: 8px 0;
+  border: 1px solid #e5e7eb;
+  animation: dropdownFadeIn 0.18s;
+}
+.noteu1-dropdown:hover > div,
+.noteu1-dropdown:focus-within > div,
+.noteu2-dropdown:hover > div,
+.noteu2-dropdown:focus-within > div {
+  display: block !important;
+}
+@media (max-width: 600px) {
+  .noteu-btn {
+    padding: 8px 10px;
+    font-size: 1em;
+  }
+  .noteu-dropdown > div {
+    min-width: 100px;
+  }
+  .noteu-dropdown button.noteu-dropdown-item {
+    font-size: 1em;
+    padding: 7px 10px;
+    min-width: 70px;
+  }
+  .noteu1-btn, .noteu2-btn {
+    padding: 7px 10px;
+    font-size: 0.98em;
+  }
+  .noteu1-dropdown > div, .noteu2-dropdown > div {
+    min-width: 90px;
+  }
 }
