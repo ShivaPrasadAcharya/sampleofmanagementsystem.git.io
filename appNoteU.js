@@ -1,17 +1,25 @@
 // appNoteU.js
 (function() {
-    // Generalized nested dropdown structure (simple, scalable)
+    // Minimal, clear, scalable nested dropdown config
     const noteUNested = [
         {
             key: 'noteU1', label: 'NoteU1', items: [
-                { key: 'noteU11', label: 'NoteU11', emoji: window.noteU11Meta?.emoji || '', content: window.noteU11Content },
-                { key: 'noteU12', label: 'NoteU12', emoji: window.noteU12Meta?.emoji || '', content: window.noteU12Content }
+                ...['noteU11', 'noteU12'].map(k => ({
+                    key: k,
+                    label: k.replace('noteU', 'NoteU'),
+                    emoji: window[`${k}Meta`]?.emoji || '',
+                    content: window[`${k}Content`]
+                }))
             ]
         },
         {
             key: 'noteU2', label: 'NoteU2', items: [
-                { key: 'noteU21', label: 'NoteU21', emoji: window.noteU21Meta?.emoji || '', content: window.noteU21Content },
-                { key: 'noteU22', label: 'NoteU22', emoji: window.noteU22Meta?.emoji || '', content: window.noteU22Content }
+                ...['noteU21', 'noteU22'].map(k => ({
+                    key: k,
+                    label: k.replace('noteU', 'NoteU'),
+                    emoji: window[`${k}Meta`]?.emoji || '',
+                    content: window[`${k}Content`]
+                }))
             ]
         }
     ];
