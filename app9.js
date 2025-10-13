@@ -104,7 +104,7 @@
         videosRibbon.style.display = 'inline-block';
         videosRibbon.style.position = 'relative';
         videosRibbon.style.marginLeft = '8px';
-        videosRibbon.innerHTML = '<button class="videos-ribbon-btn" style="font-weight:bold;cursor:pointer;padding:10px 20px;border-radius:25px;border:none;background:#f0f2f5;">🎥 Videos2 ▼</button>';
+        videosRibbon.innerHTML = '<button class="videos-ribbon-btn" style="font-weight:bold;cursor:pointer;padding:10px 20px;border-radius:25px;border:none;background:#f0f2f5;">🎥 V2 ▼</button>';
         var videosSubmenu = document.createElement('div');
         videosSubmenu.style.display = 'none';
         videosSubmenu.style.position = 'absolute';
