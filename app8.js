@@ -255,6 +255,13 @@
                     '</ul></div>';
             }
             htmlContent.innerHTML = toc + div.innerHTML;
+            // Auto-render Mermaid flowcharts if present
+            var mermaidDivs = htmlContent.querySelectorAll('.mermaid');
+            if (mermaidDivs.length > 0) {
+                mermaidDivs.forEach(function(div) {
+                    renderFlowchart(div.parentNode, div.textContent);
+                });
+            }
         }
         addHtmlSearch(container, htmlKey);
     }
@@ -281,4 +288,24 @@
     var style = document.createElement('style');
     style.textContent = '.md-search-highlight { background: #fff3cd; color: #d35400; border-radius: 3px; padding: 1px 2px; } .md-search-current { background: #ff6b6b !important; color: #fff !important; } .md-html-search-bar .md-search-input { width: 40%; min-width: 120px; max-width: 100%; } @media (max-width: 600px) { .md-html-search-bar .md-search-input { width: 90%; min-width: 60px; } }';
     document.head.appendChild(style);
+
+    // Flowchart rendering using mermaid.js
+    function renderFlowchart(container, chartCode) {
+        if (!window.mermaid) {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js';
+            script.onload = function() {
+                window.mermaid.initialize({ startOnLoad: false });
+                renderMermaidChart(container, chartCode);
+            };
+            document.head.appendChild(script);
+        } else {
+            renderMermaidChart(container, chartCode);
+        }
+    }
+    function renderMermaidChart(container, chartCode) {
+        container.innerHTML = '<div class="mermaid">' + chartCode + '</div>';
+        window.mermaid.init(undefined, container.querySelectorAll('.mermaid'));
+    }
+    // Usage: renderFlowchart(someElement, `graph TD; A-->B; B-->C; C-->A;`);
 })();

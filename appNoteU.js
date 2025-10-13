@@ -227,7 +227,11 @@
             '<div class="markdown-content"></div></div>';
         var container = root.querySelector('.data-section');
         var mdContent = container.querySelector('.markdown-content');
-        mdContent.innerHTML = simpleMarkdownToHtml(content);
+        var rendered = simpleMarkdownToHtml(content);
+        mdContent.innerHTML = rendered;
+        if (window.noteUSearchBar) {
+            window.noteUSearchBar(container, noteKey, function() { return simpleMarkdownToHtml(content); });
+        }
     }
 
     function tryInjectNoteU() {

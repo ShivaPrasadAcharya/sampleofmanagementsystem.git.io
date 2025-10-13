@@ -501,3 +501,37 @@ span[style*="text-decoration:underline;"] {
   text-decoration: underline;
   color: #2563eb;
 }
+
+/* NoteU search highlight styles */
+.noteu-search-highlight {
+  background: #fef9c3;
+  color: #be185d;
+  border-radius: 3px;
+  padding: 1px 2px;
+}
+.noteu-search-current {
+  background: #be185d !important;
+  color: #fff !important;
+}
+.noteu-html-search-bar .noteu-search-input {
+  width: 40%;
+  min-width: 120px;
+  max-width: 100%;
+}
+
+/* Sticky/fixed search bar for NoteU */
+.noteu-html-search-bar.sticky-noteu-html-search-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1003;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+@media (max-width: 600px) {
+  .noteu-html-search-bar .noteu-search-input {
+    width: 90%;
+    min-width: 60px;
+  }
+}
