@@ -4,7 +4,8 @@
   
   <!-- SMS Text -->
   <text x="16" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold" 
-        text-anchor="middle" fill="black">DJ3</text>
+        text-anchor="middle" fill="Yellow">DJ3</text>
 
 </svg>
+
 
