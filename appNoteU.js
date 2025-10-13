@@ -4,7 +4,7 @@
     const noteUNested = [
         {
             key: 'noteU1', label: 'NoteU1', items: [
-                ...['noteU11', 'noteU12'].map(k => ({
+                ...['noteU11', 'noteU12', 'noteU13'].map(k => ({
                     key: k,
                     label: k.replace('noteU', 'NoteU'),
                     emoji: window[`${k}Meta`]?.emoji || '',
@@ -15,6 +15,16 @@
         {
             key: 'noteU2', label: 'NoteU2', items: [
                 ...['noteU21', 'noteU22'].map(k => ({
+                    key: k,
+                    label: k.replace('noteU', 'NoteU'),
+                    emoji: window[`${k}Meta`]?.emoji || '',
+                    content: window[`${k}Content`]
+                }))
+            ]
+        },
+        {
+            key: 'noteU3', label: 'NoteU3', items: [
+                ...['noteU31', 'noteU32'].map(k => ({
                     key: k,
                     label: k.replace('noteU', 'NoteU'),
                     emoji: window[`${k}Meta`]?.emoji || '',
@@ -110,6 +120,106 @@
         filesDropdown.parentNode.insertBefore(noteUParent, filesDropdown.nextSibling);
     }
 
+    // Markdown rendering (from app7.js, with underline and code block support)
+    function simpleMarkdownToHtml(md) {
+        if (!md) return '';
+        var h1s = [];
+        var lines = md.split('\n');
+        var newLines = [];
+        var h1Count = 0;
+        var inTable = false;
+        var tableRows = [];
+        var inCodeBlock = false;
+        lines.forEach(function(line, idx) {
+            var m = line.match(/^# (.*)$/);
+            var isTableRow = /^\s*\|(.+\|)+\s*$/.test(line);
+            var isTableHeaderSep = /^\s*\|?(\s*:?-+:?\s*\|)+\s*$/.test(line);
+            if (line.trim().startsWith('```')) {
+                inCodeBlock = !inCodeBlock;
+                newLines.push(inCodeBlock ? '<pre><code>' : '</code></pre>');
+                return;
+            }
+            if (inCodeBlock) {
+                newLines.push(line);
+                return;
+            }
+            if (isTableRow && !isTableHeaderSep) {
+                if (!inTable) {
+                    inTable = true;
+                    tableRows = [];
+                }
+                tableRows.push(line);
+                if (idx === lines.length - 1) {
+                    newLines.push(renderTable(tableRows));
+                    inTable = false;
+                    tableRows = [];
+                }
+                return;
+            } else if (isTableHeaderSep && inTable) {
+                tableRows.push(line);
+                return;
+            } else if (inTable) {
+                newLines.push(renderTable(tableRows));
+                inTable = false;
+                tableRows = [];
+            }
+            if (m) {
+                h1Count++;
+                var id = 'toc-h1-' + h1Count;
+                h1s.push({text: m[1], id: id});
+                newLines.push('<h1 id="' + id + '">' + m[1] + ' <a href="#toc-top" class="toc-back-link">Back to TOC</a></h1>');
+            } else {
+                // Underline support: <u>text</u>
+                newLines.push(line.replace(/<u>(.*?)<\/u>/g, '<span style="text-decoration:underline;">$1</span>'));
+            }
+        });
+        var toc = '';
+        if (h1s.length > 0) {
+            toc = '<div id="toc-top" class="toc-container"><strong>Table of Contents</strong><ul>' +
+                h1s.map(function(h) { return '<li><a href="#' + h.id + '" class="toc-link">' + h.text + '</a></li>'; }).join('') +
+                '</ul></div>';
+        }
+        var html = newLines.join('\n')
+            .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+            .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+            .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+            .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+            .replace(/\n---\n/g, '<hr>')
+            .replace(/\n/g, '<br>');
+        return toc + html;
+        function renderTable(rows) {
+            if (!rows || rows.length < 2) return rows.join('<br>');
+            var header = rows[0].trim().replace(/^[|]|[|]$/g, '').split('|').map(s => s.trim());
+            var align = [];
+            var sep = rows[1].trim().replace(/^[|]|[|]$/g, '').split('|');
+            align = sep.map(function(cell) {
+                cell = cell.trim();
+                if (/^:-+:$/.test(cell)) return 'center';
+                if (/^-+:$/.test(cell)) return 'right';
+                if (/^:-+$/.test(cell)) return 'left';
+                return '';
+            });
+            var bodyRows = rows.slice(2).map(function(row) {
+                return row.trim().replace(/^[|]|[|]$/g, '').split('|').map(s => s.trim());
+            });
+            var html = '<table class="md-table"><thead><tr>' +
+                header.map(function(cell, i) {
+                    var a = align[i] ? ' style="text-align:' + align[i] + ';"' : '';
+                    return '<th' + a + '>' + cell + '</th>';
+                }).join('') +
+                '</tr></thead><tbody>' +
+                bodyRows.map(function(cols) {
+                    return '<tr>' + cols.map(function(cell, i) {
+                        var a = align[i] ? ' style="text-align:' + align[i] + ';"' : '';
+                        return '<td' + a + '>' + cell + '</td>';
+                    }).join('') + '</tr>';
+                }).join('') +
+                '</tbody></table>';
+            return html;
+        }
+    }
+
     function showNoteUContent(noteKey, label, content) {
         var root = document.getElementById('root');
         if (!root) return;
@@ -117,7 +227,7 @@
             '<div class="markdown-content"></div></div>';
         var container = root.querySelector('.data-section');
         var mdContent = container.querySelector('.markdown-content');
-        mdContent.innerHTML = content.replace(/\n/g, '<br>');
+        mdContent.innerHTML = simpleMarkdownToHtml(content);
     }
 
     function tryInjectNoteU() {

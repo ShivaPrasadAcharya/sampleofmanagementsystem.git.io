@@ -1,5 +1,5 @@
 // dataWmarkdown1.js
-window.markdownW1Content = `
+window.noteU13Content = `
 # Welcome to NoteW
 
 ## Add your markdown content here
@@ -15,7 +15,7 @@ window.markdownW1Content = `
 
 ---
 `;
-window.markdownW1Meta = {
+window.noteU13Meta = {
   name: "NoteW Example",
   emoji: "📝"
 };

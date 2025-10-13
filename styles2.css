@@ -439,3 +439,65 @@
     min-width: 90px;
   }
 }
+
+/* NoteU markdown table styles - improved */
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 1em;
+}
+.md-table th, .md-table td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  text-align: left;
+}
+.md-table th {
+  background: #c7d2fe;
+  color: #1e293b;
+  font-weight: bold;
+}
+.md-table tr:nth-child(even) td {
+  background: #f3f4f6;
+}
+.md-table tr:nth-child(odd) td {
+  background: #fff;
+}
+.toc-container {
+  background: #e0e7ff;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin-bottom: 18px;
+  font-size: 1.08em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.toc-link {
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.toc-back-link {
+  font-size: 0.9em;
+  color: #2563eb;
+  margin-left: 8px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Markdown code block styles for NoteU */
+pre code {
+  display: block;
+  background: #f3f4f6;
+  color: #374151;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+  font-size: 0.98em;
+  margin: 12px 0;
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+span[style*="text-decoration:underline;"] {
+  text-decoration: underline;
+  color: #2563eb;
+}

@@ -1,5 +1,5 @@
 // dataWmarkdown2.js
-window.markdownW2Content = `
+window.noteU31Content = `
 ---
 #### this is fourth level heading-trial
 ## **KSI Hash vs Bitcoin Hash** ⚖️
@@ -16,7 +16,7 @@ window.markdownW2Content = `
 <u>does markdown support underline?-trial</u>
 **there is underline text above this line**
 `;
-window.markdownW2Meta = { 
+window.noteU31Meta = { 
   name: "table content",
    emoji: "📄"
    };
