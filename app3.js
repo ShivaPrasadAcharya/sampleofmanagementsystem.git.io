@@ -393,13 +393,14 @@ DataApp.prototype.renderAllDataTables = function() {
 
 DataApp.prototype.renderDataTable = function(data, headers, dataset) {
     const searchTermToUse = this.searchTerm;
+
+    // Generalized row coloring logic for any dataset with rowColors
+    const info = this.datasetInfo[dataset] || {};
     // Detect if this is the data3 (Links) dataset and has a Link column
     const isLinksDataset = dataset === 'data3Links' && headers.includes('Link');
-    // Detect if this is the data2 (Images) dataset and has an Image column
-    const isImagesDataset = dataset === 'data2Images' && headers.includes('Image');
-    
-        // Generalized row coloring logic for any dataset with rowColors
-    const info = this.datasetInfo[dataset] || {};
+    // Detect image-like datasets: any dataset that has an 'Image' column should render as images
+    // except for the special password-protected `data6IMAGESS` which is handled separately below.
+    const isImagesDataset = headers.includes('Image') && dataset !== 'data6IMAGESS';
     let rowColors = info.rowColors || {};
     let primaryKey = info.primaryKey ? info.primaryKey.toLowerCase() : '';
     let keyColIdx = primaryKey ? headers.findIndex(h => h.toLowerCase() === primaryKey) : -1;

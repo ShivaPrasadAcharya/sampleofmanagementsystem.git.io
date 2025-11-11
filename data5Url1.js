@@ -18,6 +18,7 @@ var data5Url1 = `SN,subject,description,shorturl,longurl
 14,git-Link,Video1,videoslinks,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data9Videos1.js
 15,git-Link,Video2,wallvideos2,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data9Videos2.js
 16,git-Upload,Upload Content,upload,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/upload/main
+17,git-Images-b,Images Duplicate,data2bImages.js,https://github.com/ShivaPrasadAcharya/sampleofmanagementsystem.git.io/edit/main/data2bImages.js
 
 
 `;
