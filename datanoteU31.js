@@ -18,5 +18,7 @@ window.noteU31Content = `
 `;
 window.noteU31Meta = { 
   name: "table content",
-   emoji: "📄"
-   };
+  emoji: "📝",
+  display: "unhide",
+  password: "null"
+};

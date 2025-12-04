@@ -6,5 +6,7 @@ This is the content for NoteU12 in markdown format.
 `;
 window.noteU12Meta = {
   name: "NoteU12",
-  emoji: "📒"
+  emoji: "📝",
+  display: "unhide",
+  password: "123"
 };

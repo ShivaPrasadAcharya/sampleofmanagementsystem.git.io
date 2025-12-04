@@ -13,5 +13,7 @@ End of sample 2.
 `;
 window.noteU22Meta = {
   name: "NoteU22",
-  emoji: "📘"
+  emoji: "📝",
+  display: "unhide",
+  password: "null"
 };

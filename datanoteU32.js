@@ -32,6 +32,8 @@ window.noteU32Content = `
 `;
 window.noteU32Meta = { 
   name: "See trial content",
-  emoji: "📄"
+  emoji: "📝",
+  display: "unhide",
+  password: "null"
 };
 

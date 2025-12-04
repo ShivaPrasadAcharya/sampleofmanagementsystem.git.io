@@ -26,5 +26,7 @@ End of sample 2.
 `;
 window.noteU21Meta = {
   name: "NoteU21-ok",
-  emoji: "📔"
+  emoji: "📝",
+  display: "unhide",
+  password: "null"
 };

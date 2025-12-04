@@ -17,5 +17,7 @@ window.noteU13Content = `
 `;
 window.noteU13Meta = {
   name: "NoteW Example",
-  emoji: "📝"
+  emoji: "📝",
+  display: "unhide",
+  password: "null"
 };
