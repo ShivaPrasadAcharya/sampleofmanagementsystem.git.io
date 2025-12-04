@@ -80,7 +80,10 @@
         if (!note.content) return; // no content -> skip
         var btn = document.createElement('button');
         btn.className = 'noteu-dropdown-item';
-        btn.innerHTML = (note.emoji || '') + ' ' + note.label;
+        // show lock emoji if password is required
+        var pw = note.meta && note.meta.password;
+        var needsPassword = !(pw === undefined || pw === null || pw === '' || pw === 'null');
+        btn.innerHTML = (note.emoji ? note.emoji + ' ' : '') + note.label + (needsPassword ? ' 🔒' : '');
         btn.type = 'button';
         btn.onclick = function(e) {
           e.stopPropagation();

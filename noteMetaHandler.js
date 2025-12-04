@@ -17,7 +17,12 @@
   window.renderNoteU = function(noteKey, label, content) {
     var root = document.getElementById('root');
     if (!root) return;
-    root.innerHTML = '<div class="data-section"><div class="data-section-header"><span class="data-section-title">NoteU: ' + label + '</span></div>' +
+    // show lock icon in title when password-protected
+    var meta = window[noteKey + 'Meta'] || {};
+    var pw = meta.password;
+    var needsPassword = !(pw === undefined || pw === null || pw === '' || pw === 'null');
+    var lock = needsPassword ? ' 🔒' : '';
+    root.innerHTML = '<div class="data-section"><div class="data-section-header"><span class="data-section-title">NoteU: ' + label + lock + '</span></div>' +
       '<div class="markdown-content"></div></div>';
     var container = root.querySelector('.data-section');
     var mdContent = container.querySelector('.markdown-content');
