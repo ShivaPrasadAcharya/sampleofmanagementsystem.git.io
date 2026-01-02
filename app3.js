@@ -122,9 +122,9 @@ DataApp.prototype.getHTML = function() {
                             </div>
                         </div>
                         <button class="multiple-datasets-toggle ${this.showMultipleDatasets ? 'active' : ''}" onclick="window.dataApp.toggleMultipleDatasets()">
-                            ${this.showMultipleDatasets ? '📋 Single File' : '📊 All Files'}
+                            ${this.showMultipleDatasets ? '📋 SingleFile' : '📊 AllFiles'}
                         </button>
-                        <button class="data-btn" onclick="window.dataApp.openStatsModal()" title="Show Data Statistics">📊 DATA</button>
+                        <button class="data-btn" onclick="window.dataApp.openStatsModal()" title="Show Data Statistics">📊DATA</button>
                     </div>
                     <div style="display: flex; align-items: center; flex: 1; gap: 10px;">
                         <input type="text" class="search-input" placeholder="🔍  Enter character slowly..." value="${this.searchTerm}">
@@ -149,7 +149,7 @@ DataApp.prototype.getHTML = function() {
                 </div>
 
                 <button class="sql-filter-toggle ${this.sqlFilterExpanded ? 'expanded' : ''}" onclick="window.dataApp.toggleSQLFilter()">
-                    🔧 Advanced Filtering
+                    AdvancedFilter
                     <span class="toggle-icon">▼</span>
                 </button>
 

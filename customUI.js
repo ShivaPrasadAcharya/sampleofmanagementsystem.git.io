@@ -53,7 +53,46 @@ const componentConfig = {
     // Files dropdown (if exists)
     "Files": {
         selector: ".files-dropdown",
-        display: "show",
+        display: "hide",
+        space: "collapse",
+        condition: null,
+        password: "none",
+        protected: false
+    },
+
+    // Advanced Filter (SQL Section)
+    "AdvancedFilter": {
+        selector: [".sql-filter-toggle", ".sql-section"],
+        display: "hide",
+        space: "preserve",
+        condition: null,
+        password: "none",
+        protected: false
+    },
+
+    // AllFiles / SingleFile toggle (controls multi-file view)
+    "AllFilesToggle": {
+        selector: ".multiple-datasets-toggle",
+        display: "hide",
+        space: "preserve",
+        condition: null,
+        password: "none",
+        protected: false
+    },
+
+    "SingleFileToggle": {
+        selector: ".multiple-datasets-toggle",
+        display: "hide",
+        space: "preserve",
+        condition: null,
+        password: "none",
+        protected: false
+    },
+
+    // Data UI (DATA button and statistics modal)
+    "DataUI": {
+        selector: [".data-btn", "#stats-modal"],
+        display: "hide",
         space: "preserve",
         condition: null,
         password: "none",
@@ -86,15 +125,19 @@ const ComponentCustomizer = {
         
         Object.keys(this.config).forEach(componentName => {
             const settings = this.config[componentName];
-            let component = null;
+            let components = [];
             
             // Try to find component by selector (class or ID)
             if (settings.selector) {
-                component = document.querySelector(settings.selector);
+                const selectors = Array.isArray(settings.selector) ? settings.selector : [settings.selector];
+                selectors.forEach(selector => {
+                    const el = document.querySelector(selector);
+                    if (el) components.push(el);
+                });
             }
             
-            if (!component) {
-                console.warn(`⚠️  Component "${componentName}" with selector "${settings.selector}" not found`);
+            if (components.length === 0) {
+                console.warn(`⚠️  Component "${componentName}" with selector "${JSON.stringify(settings.selector)}" not found`);
                 return;
             }
             
@@ -104,30 +147,42 @@ const ComponentCustomizer = {
             if (settings.condition && typeof settings.condition === 'function') {
                 if (!settings.condition()) {
                     console.log(`✓ Component "${componentName}" condition not met - hiding`);
-                    this._hideComponent(component, componentName, settings.space);
+                    components.forEach(component => {
+                        this._hideComponent(component, componentName, settings.space);
+                    });
                     return;
                 }
             }
             
-            // Apply display setting
+            // Apply display setting to all matching components
             if (settings.display === 'hide') {
-                this._hideComponent(component, componentName, settings.space);
+                components.forEach(component => {
+                    this._hideComponent(component, componentName, settings.space);
+                });
                 console.log(`✓ Component "${componentName}" hidden`);
             } else if (settings.display === 'show' || settings.display === 'unhide') {
-                this._showComponent(component, componentName, settings.space);
+                components.forEach(component => {
+                    this._showComponent(component, componentName, settings.space);
+                });
                 console.log(`✓ Component "${componentName}" shown`);
             }
             
             // Apply protected/disabled setting
             if (settings.protected === true) {
-                this._protectComponent(component, componentName);
+                components.forEach(component => {
+                    this._protectComponent(component, componentName);
+                });
                 console.log(`✓ Component "${componentName}" protected`);
             } else {
-                this._unprotectComponent(component, componentName);
+                components.forEach(component => {
+                    this._unprotectComponent(component, componentName);
+                });
             }
             
             // Apply password/role restriction
-            this._applyPasswordRestriction(component, componentName, settings.password);
+            components.forEach(component => {
+                this._applyPasswordRestriction(component, componentName, settings.password);
+            });
             
             console.log(`✓ Component "${componentName}" configured`);
         });
@@ -138,17 +193,23 @@ const ComponentCustomizer = {
     // ========== HELPER METHODS (No need to edit) ==========
     
     _hideComponent: function(component, componentId, space) {
-        component.style.display = 'none';
         component.setAttribute('data-hidden', 'true');
         
         if (space === 'collapse') {
+            component.style.display = 'none';
             component.style.visibility = 'hidden';
             component.style.height = '0';
             component.style.overflow = 'hidden';
+            component.style.margin = '0';
+            component.style.padding = '0';
         } else if (space === 'autoadjust') {
+            component.style.display = 'none';
             component.style.position = 'absolute';
             component.style.pointerEvents = 'none';
             component.style.opacity = '0';
+        } else {
+            // 'preserve' - just hide without affecting layout much
+            component.style.display = 'none';
         }
     },
     
