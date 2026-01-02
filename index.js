@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Application is already initialized in app.js
     console.log('🚀 Advanced Data Management System loaded successfully!');
     
+    // Initialize custom component configurations
+    if (window.ComponentCustomizer && window.ComponentCustomizer.initializeAll) {
+        setTimeout(function() {
+            ComponentCustomizer.initializeAll();
+            console.log('✅ Component Customizer initialized');
+        }, 500); // Small delay to ensure all components are rendered
+    }
+    
     // Verify all required components are loaded
     const requiredComponents = [
         'dataApp',
